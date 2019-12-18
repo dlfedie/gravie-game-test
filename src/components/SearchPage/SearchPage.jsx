@@ -1,28 +1,49 @@
-import React, { useState } from 'react';
-// import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 
-function SearchPage() {
-    const [searchText, setSearchText] = useState('');
+class SearchPage extends Component {
+    // const [searchText, setSearchText] = useState('');
 
-    function searchForGame() {
+    state = {
+        searchText: ''
+    }
+
+    searchForGame = () => {
         console.log('clicked on the old button');
         this.props.dispatch({
             type: 'SEARCH_FOR_GAME',
-            payload: searchText
+            payload: this.state.searchText
         })
-        setSearchText('');
+        this.setState({
+            ...this.state,
+            searchText: ''
+        })
     }
 
-    return (
-        <div>
-            <h1>Search</h1>
-            <input onChange={(event) => setSearchText(event.target.value)}/>
-            <button onClick={searchForGame}>Search!</button>
-            {JSON.stringify(searchText)}
-        </div>
-    )
-    
+    setSearchText = (event) => {
+        this.setState({
+            ...this.state,
+            searchText: event.target.value
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>Search</h1>
+                <input onChange={this.setSearchText} />
+                <button onClick={this.searchForGame}>Search!</button>
+                {JSON.stringify(this.state.searchText)}
+            </div>
+        )
+    }
 }
 
-export default SearchPage;
+const mapStateToProps = (reduxStore) => {
+    return {
+        searchResults: reduxStore
+    }
+}
+
+export default connect(mapStateToProps)(SearchPage);
