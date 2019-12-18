@@ -19,7 +19,7 @@ function* searchForGames(action) {
 }
 
 function* searchSaga() {
-    yield takeLatest('SEARCH_FOR_GAMES', searchForGames)
+    yield takeLatest('SEARCH_FOR_GAME', searchForGames)
 }
 
 export default searchSaga;

@@ -13,7 +13,7 @@ class SearchPage extends Component {
         console.log('clicked on the old button');
         this.props.dispatch({
             type: 'SEARCH_FOR_GAME',
-            payload: this.state.searchText
+            payload: {searchText: this.state.searchText}
         })
         this.setState({
             ...this.state,
