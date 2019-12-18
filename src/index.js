@@ -16,25 +16,25 @@ import App from './components/App/App';
 
 const sagaMiddleware = createSagaMiddleware();
 
-// this line creates an array of all of redux middleware you want to use
-// we don't want a whole ton of console logs in our production code
-// logger will only be added to your project if your in development mode
+// logger will only be added if you're in development mode
 const middlewareList = process.env.NODE_ENV === 'development' ?
     [sagaMiddleware, logger] :
     [sagaMiddleware];
 
 const store = createStore(
     // tells the saga middleware to use the rootReducer
-    // rootSaga contains all of our other reducers
+    // rootReducer contains all of our reducers
     rootReducer,
     // adds all middleware to our project including saga and logger
     applyMiddleware(...middlewareList),
 );
 
 // tells the saga middleware to use the rootSaga
-// rootSaga contains all of our other sagas
+// rootSaga contains all of our sagas
 sagaMiddleware.run(rootSaga);
 
+// wrap the app in the Provider so we have access to our redux store
+// this ultimately points to the index.html file. Hooray React!
 ReactDOM.render(
     <Provider store={store}>
         <App />

@@ -6,20 +6,32 @@ const axios = require('axios');
 
 // POST route to get Giant Bomb data
 router.post('/', (req, res) => {
-    //log the query
+    // store the the query
     const searchQuery = req.body;
-    //looks like we get .search as a key
+    // on front end we passed it as a key for .searchText
     console.log('in searchRouter POST', searchQuery.searchText);
 
-    const googleBooks = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery.searchText}&key=${process.env.GOOGLE_BOOKS_API_KEY}&maxResults=20`;
-    axios.get(googleBooks)
+    const giantBomb = `http://www.giantbomb.com/api/search/?api_key=${process.env.GIANT_BOMB_API_KEY}&format=json&query="metroid prime"&resources=game`;
+    const giantBombMetroidPrime = `http://www.giantbomb.com/api/search/?api_key=f39024fc1c8ba874e84a82c7804874059993b70c&format=json&query="metroid prime"&resources=game&field_list=genres,name,deck,image,platforms,developers,publishers`
+
+    axios.get(giantBombMetroidPrime)
         .then(result => {
-            console.log('successful GET from Google Books api');
+            console.log('successful GET from Giant Bomb api');
             res.send(result.data)
-        }).catch(error => {
-            console.log('error in Google Book GET', error);
+        }).catch(err => {
+            console.log('error in Giant Bomb GET');
             res.sendStatus(500);
         })
+
+    // const googleBooks = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery.searchText}&key=${process.env.GOOGLE_BOOKS_API_KEY}&maxResults=20`;
+    // axios.get(googleBooks)
+    //     .then(result => {
+    //         console.log('successful GET from Google Books api');
+    //         res.send(result.data)
+    //     }).catch(error => {
+    //         console.log('error in Google Book GET', error);
+    //         res.sendStatus(500);
+    //     })
 });
 
 module.exports = router;
