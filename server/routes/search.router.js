@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
     console.log('in searchRouter POST', searchQuery.searchText);
 
     const giantBomb = `http://www.giantbomb.com/api/search/?api_key=${process.env.GIANT_BOMB_API_KEY}&format=json&query="metroid prime"&resources=game`;
-    const giantBombMetroidPrime = `http://www.giantbomb.com/api/search/?api_key=f39024fc1c8ba874e84a82c7804874059993b70c&format=json&query="metroid prime"&resources=game&field_list=genres,name,deck,image,platforms,developers,publishers`
+    const giantBombMetroidPrime = `http://www.giantbomb.com/api/search/?api_key=${process.env.GIANT_BOMB_API_KEY}&format=json&query="metroid prime"&resources=game&field_list=genres,name,deck,image,platforms,developers,publishers`
 
     axios.get(giantBombMetroidPrime)
         .then(result => {
