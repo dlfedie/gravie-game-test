@@ -36,3 +36,55 @@
     transform: rotate(360deg);
   }
 }
+
+.top-part-of-search {
+  margin: 10px;
+}
+
+.search-input {
+  margin: 8px;
+}
+
+.search-button {
+  margin: 8px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.card {
+  flex: 0 1 20%;
+  border: 2px solid black;
+  margin: 2%;
+  border-radius: 1%;
+  padding: 2px;
+}
+
+img {
+	display: block;
+	border: 0;
+	width: 100%;
+	height: auto;
+}
+
+.card-content {
+	padding: 1.4em;
+}
+
+.card-content h2 {
+	margin-top: 0;
+	margin-bottom: .5em;
+	font-weight: bold;
+}
+
+.card-content h3 {
+	margin-top: 0;
+	margin-bottom: .5em;
+	font-weight: bold;
+}
+
+.card-content p {
+	font-size: 80%;
+}
