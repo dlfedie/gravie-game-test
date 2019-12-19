@@ -30,26 +30,36 @@ class SearchPage extends Component {
         })
     }
 
+    addToCart = (game) => {
+        console.log(game);
+        this.props.dispatch({
+            type: 'ADD_TO_CART',
+            payload: game
+        })
+        
+    }
+
     render() {
 
         let searchResultsList = this.props.searchResults.map((game, index) => {
             return (
-                <article className="card">
+                <article className="card" key={game.name}>
                     <img src={game.image.small_url} alt={game.name} />
                     <div className="card-content">
                         <h2>{game.name}</h2>
                         <p>{game.deck}</p>
                         <h2>Platforms:</h2>
-                        {game.platforms.map((system) => {
+                        {game.platforms && game.platforms.map((system) => {
                             return (
-                                <h3>{system.name}</h3>
+                                <h3 key={system.name}>{system.name}</h3>
                             )
                         })}
-                        <button>Add to Checkout!</button>
+                        <button onClick={() => this.addToCart(game)}>Add to Checkout!</button>
                     </div>
                 </article>
             )
         })
+
 
         return (
             <>
@@ -66,7 +76,7 @@ class SearchPage extends Component {
                         {this.props.searchResults &&
                             searchResultsList}
                 </section>
-                {JSON.stringify(this.props.searchResults)}
+                {/* {JSON.stringify(this.props.searchResults)} */}
             </div>
             </>
         )
