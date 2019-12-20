@@ -3,14 +3,20 @@ import { connect } from 'react-redux';
 
 class CheckoutPage extends Component {
 
+    removeFromCart = (index) => {
+        console.log('index of game?', index);
+        
+    }
+
     render() {
 
         let cartList = this.props.cart.map((game, index) => {
             return (
-                <article className="card" key={game.name}>
-                    <img src={game.image.small_url} alt={game.name} />
-                    <div className="card-content">
-                        <h2>{game.name}</h2>
+                <article className="checkout-card" key={game.name}>
+                    <img className="checkout-img" src={game.image.small_url} alt={game.name} />
+                    <div className="checkout-card-content">
+                        <h2 className="display-override">{game.name}</h2>
+                        <button className="remove-button" onClick={() => this.removeFromCart(index)}>Remove From Cart</button>
                     </div>
                 </article>
             ) 
@@ -20,7 +26,7 @@ class CheckoutPage extends Component {
             <>
                 <h1>Checkout!</h1>
                 <div>
-                    <section className="cards">
+                    <section className="checkout-cards">
                         {this.props.cart &&
                             cartList}
                     </section>
