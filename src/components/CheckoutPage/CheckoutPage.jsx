@@ -3,8 +3,12 @@ import { connect } from 'react-redux';
 
 class CheckoutPage extends Component {
 
-    removeFromCart = (index) => {
-        console.log('index of game?', index);
+    removeFromCart = (id) => {
+        console.log('id of game: ', id);
+        this.props.dispatch({
+            type: 'REMOVE_GAME',
+            payload: {gameID: id}
+        })
         
     }
 
@@ -16,7 +20,7 @@ class CheckoutPage extends Component {
                     <img className="checkout-img" src={game.image.small_url} alt={game.name} />
                     <div className="checkout-card-content">
                         <h2 className="display-override">{game.name}</h2>
-                        <button className="remove-button" onClick={() => this.removeFromCart(index)}>Remove From Cart</button>
+                        <button className="remove-button" onClick={() => this.removeFromCart(game.id)}>Remove From Cart</button>
                     </div>
                 </article>
             ) 
