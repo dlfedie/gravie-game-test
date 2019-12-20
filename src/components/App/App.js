@@ -11,6 +11,7 @@ import {
 import Nav from '../Nav/Nav';
 import SearchPage from '../SearchPage/SearchPage';
 import CheckoutPage from '../CheckoutPage/CheckoutPage';
+import HistoryPage from '../History/HistoryPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Redirect exact from="/" to="/home" />
           <Route exact path="/home" component={SearchPage} />
           <Route exact path="/checkout" component={CheckoutPage} />
+          <Route exact path="/history" component={HistoryPage} />
         </Switch>
       </div>
     </Router>
