@@ -21,7 +21,17 @@ const checkoutReducer = (state = [], action) => {
     }
 };
 
+// technically this should probably be a separate reducer, hey, let's just use that combineReducers
+const historyReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_HISTORY':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 
 export default combineReducers({
-    checkoutReducer,
+    checkoutReducer, historyReducer
 });

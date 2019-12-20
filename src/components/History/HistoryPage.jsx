@@ -3,31 +3,23 @@ import { connect } from 'react-redux';
 
 class HistoryPage extends Component {
 
-    removeFromCart = (id) => {
-        console.log('id of game: ', id);
+    componentDidMount() {
         this.props.dispatch({
-            type: 'REMOVE_GAME',
-            payload: { gameID: id }
-        })
-    }
-
-    finalizeCheckout = () => {
-        console.log('clicked on the checkout button');
-        this.props.dispatch({
-            type: 'CHECKOUT_FULL_CART',
-            payload: this.props.cart
+            type: 'FETCH_TRANSACTION_HISTORY'
         })
     }
 
     render() {
 
-        let cartList = this.props.cart.map((game, index) => {
+        let historyList = this.props.history.map((transaction, index) => {
             return (
-                <article className="checkout-card" key={game.name}>
-                    <img className="checkout-img" src={game.image.small_url} alt={game.name} />
+                <article className="checkout-card" key={transaction.transactionID}>
                     <div className="checkout-card-content">
-                        <h2 className="display-override">{game.name}</h2>
-                        <button className="remove-button" onClick={() => this.removeFromCart(game.id)}>Remove From Cart</button>
+                        <h2>Games:</h2>
+                        <ul>
+                            {transaction.games && transaction.games.map((game) => { return (<li>{game.name}</li>) })}
+                        </ul>
+                        <p>{transaction.timestamp}</p>
                     </div>
                 </article>
             )
@@ -38,13 +30,10 @@ class HistoryPage extends Component {
                 <h1>Transaction History</h1>
                 <div>
                     <section className="checkout-cards">
-                        {this.props.cart &&
-                            cartList}
+                        {this.props.history &&
+                            historyList}
                     </section>
-                    {/* {JSON.stringify(this.props.cart)} */}
-                </div>
-                <div>
-                    <button onClick={this.finalizeCheckout}>Checkout!</button>
+                    {JSON.stringify(this.props.history.games)}
                 </div>
             </>
         )
@@ -54,7 +43,7 @@ class HistoryPage extends Component {
 
 const mapStateToProps = (reduxStore) => {
     return {
-        cart: reduxStore.checkoutCart.checkoutReducer,
+        history: reduxStore.checkoutCart.historyReducer,
     }
 }
 
