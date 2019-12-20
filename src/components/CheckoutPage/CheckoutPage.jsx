@@ -9,7 +9,14 @@ class CheckoutPage extends Component {
             type: 'REMOVE_GAME',
             payload: {gameID: id}
         })
-        
+    }
+
+    finalizeCheckout = () => {
+        console.log('clicked on the checkout button');
+        this.props.dispatch({
+            type: 'CHECKOUT_FULL_CART',
+            payload: this.props.cart
+        })
     }
 
     render() {
@@ -28,13 +35,16 @@ class CheckoutPage extends Component {
 
         return (
             <>
-                <h1>Checkout!</h1>
+                <h1>Checkout</h1>
                 <div>
                     <section className="checkout-cards">
                         {this.props.cart &&
                             cartList}
                     </section>
                     {/* {JSON.stringify(this.props.cart)} */}
+                </div>
+                <div>
+                    <button onClick={this.finalizeCheckout}>Checkout!</button>
                 </div>
             </>
         )

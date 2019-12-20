@@ -5,6 +5,8 @@ const searchReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_SEARCH_RESULTS':
             return action.payload;
+        case 'RESET_SEARCH_RESULTS':
+            return [];
         default:
             return state;
     }

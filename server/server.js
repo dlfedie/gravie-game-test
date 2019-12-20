@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 
 // Route includes
 const searchRouter = require('./routes/search.router');
+const checkoutRouter = require('./routes/checkout.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Routes */
 app.use('/api/search', searchRouter);
+app.use('/api/checkout', checkoutRouter);
 
 // Serve static files
 app.use(express.static('build'));

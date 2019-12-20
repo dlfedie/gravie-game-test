@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects';
 
-import searchSaga from './searchSaga'
+import searchSaga from './searchSaga';
+import checkoutSaga from './checkoutSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -9,5 +10,6 @@ import searchSaga from './searchSaga'
 export default function* rootSaga() {
     yield all([
         searchSaga(),
+        checkoutSaga(),
     ]);
 }

@@ -14,6 +14,8 @@ const checkoutReducer = (state = [], action) => {
                 }
             }
             return newState;
+        case 'RESET_CART':
+            return [];
         default:
             return state;
     }

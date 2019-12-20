@@ -10,7 +10,7 @@ import checkoutCart from './checkoutCart';
 // Lets make a bigger object for our store, with the objects from our reducers.
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
-    searchResults, // search reducer, for connecting to google books and storing our results
+    searchResults, // search reducer, for connecting to giant bomb and gathering search results
     checkoutCart, // our "cart" of games
 });
 
